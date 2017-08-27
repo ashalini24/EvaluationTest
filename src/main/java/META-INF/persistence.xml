@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence xmlns="http://java.sun.com/xml/ns/persistence" version="2.0">
+
+    <persistence-unit name="NewPersistenceUnit">
+        <class>com.intuit.invoice_aggregator.invoice.entity.InvoiceEntity</class>
+        <class>com.intuit.invoice_aggregator.invoice.entity.InvoicetransactionEntity</class>
+        <properties>
+            <property name="toplink.jdbc.url" value="jdbc:oracle:thin:@//pqalihbdbvip.ie.intuit.net:1521/IHUBQA1_JAVA"/>
+            <property name="toplink.jdbc.driver" value="oracle.jdbc.OracleDriver"/>
+            <property name="hibernate.connection.url"
+                      value="jdbc:oracle:thin:@//pqalihbdbvip.ie.intuit.net:1521/IHUBQA1_JAVA"/>
+            <property name="hibernate.connection.driver_class" value="oracle.jdbc.OracleDriver"/>
+            <property name="openjpa.ConnectionURL"
+                      value="jdbc:oracle:thin:@//pqalihbdbvip.ie.intuit.net:1521/IHUBQA1_JAVA"/>
+            <property name="openjpa.ConnectionDriverName" value="oracle.jdbc.OracleDriver"/>
+            <property name="eclipselink.jdbc.url"
+                      value="jdbc:oracle:thin:@//pqalihbdbvip.ie.intuit.net:1521/IHUBQA1_JAVA"/>
+            <property name="eclipselink.jdbc.driver" value="oracle.jdbc.OracleDriver"/>
+        </properties>
+    </persistence-unit>
+</persistence>

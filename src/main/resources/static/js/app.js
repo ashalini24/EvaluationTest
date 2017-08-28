@@ -26,7 +26,7 @@ $http.defaults.headers.post["Content-Type"] = "application/json";
                 invoiceEmail: $scope.email,
                 invoiceDueDate: $scope.duedate
 
-            }).
+            })
 
             success(function(data, status, headers) {
                 alert("Task added");
@@ -39,7 +39,6 @@ $http.defaults.headers.post["Content-Type"] = "application/json";
         }
 
     };
-}
-
+})
 
 

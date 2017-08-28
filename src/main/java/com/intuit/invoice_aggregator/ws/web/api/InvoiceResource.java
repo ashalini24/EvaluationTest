@@ -13,6 +13,10 @@ import org.springframework.web.bind.annotation.*;
 
 /**
  * Created by sgurram on 8/24/17.
+ *
+ * *
+ * This Service Implements Creation of an Invoice. and Placeholder for Getting an Invoice and Updating an Invoice.
+ *
  */
 
 @RestController
@@ -26,9 +30,9 @@ public class InvoiceResource {
                     method = RequestMethod.POST,
                     consumes = MediaType.APPLICATION_JSON_VALUE,
                     produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<InvoicePOJO> createInvoice(@RequestBody InvoicePOJO invoice) throws Exception{
+    public ResponseEntity<InvoicePOJO> createInvoice(@RequestBody InvoicePOJO newinvoice) throws Exception{
 
-        InvoicePOJO saveInvoice= invoiceGeneratorService.createInvoice(invoice);
+        InvoicePOJO saveInvoice= invoiceGeneratorService.createInvoice(newinvoice);
 
         if(saveInvoice== null){
             return new ResponseEntity<InvoicePOJO>(HttpStatus.BAD_REQUEST);
@@ -38,5 +42,26 @@ public class InvoiceResource {
 
     }
 
+    /**
+     * Tplace holder for 'GET' method to get the saved invoices.
+     */
+    @RequestMapping(value = "//api/invoice/{eid}",
+            method = RequestMethod.GET,
+            produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<InvoicePOJO> getRetrievalRequest(@PathVariable("eid") Long eid){
+        return null;
+    }
+
+    /**
+     * Tplace holder for 'PUT' method to update Existing Invoice.
+     */
+    @RequestMapping(value = "/api/retrievalrequest/{eid}",
+            method = RequestMethod.PUT,
+            consumes = MediaType.APPLICATION_JSON_VALUE,
+            produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<InvoicePOJO> updateretrievalrequest(@RequestBody InvoicePOJO updateInvoice){
+        return null;
+
+    }
 
 }

@@ -16,6 +16,10 @@ import java.io.IOException;
 
 /**
  * Created by sgurram on 3/16/17.
+ *
+ * For Security all Configuration will be moved to Config Service and all Passwords will be moved to
+ * IDPS.
+ *
  */
 @Configuration
 @EnableTransactionManagement

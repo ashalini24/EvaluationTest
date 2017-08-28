@@ -1,5 +1,7 @@
 package com.intuit.invoice_aggregator.ws.service;
 
+import com.intuit.invoice_aggregator.exception.NoEmailException;
+import com.intuit.invoice_aggregator.exception.NoNameException;
 import com.intuit.invoice_aggregator.exception.NoTransactionException;
 import com.intuit.invoice_aggregator.invoice.entity.*;
 import com.intuit.invoice_aggregator.ws.model.InvoicePOJO;
@@ -16,6 +18,10 @@ import java.util.List;
 
 /**
  * Created by sgurram on 8/27/17.
+ *
+ * This Service Implements Creation of an Invoice. and Plcaholder for Getting an Invoice and Updating an Invoice.
+ *
+
  */
 @Service
 public class InvoiceGeneratorServiceImpl implements InvoiceGeneratorService{
@@ -52,19 +58,46 @@ public class InvoiceGeneratorServiceImpl implements InvoiceGeneratorService{
             int invoiceSequence = invoiceRepository.countByID();
             int invoiceTransactionSequence = invoicetransactionRepository.countByID();
 
-            invoiceEntity.setName(invoicePOJO.getName());
-            invoiceEntity.setEmail(invoiceEntity.getEmail());
-            invoiceEntity.setDuedate(invoiceEntity.getDuedate());
-            invoiceEntity.setId(invoiceSequence+1);
+            if(invoicePOJO.getName().equals(null)){
+                throw new NoNameException();
+            }
+            else {
+                invoiceEntity.setName(invoicePOJO.getName());
+            }
 
+            if(invoiceEntity.getEmail().equals(null)){
+                throw new NoEmailException();
+            }
+            else{
+                invoiceEntity.setEmail(invoiceEntity.getEmail());
+            }
+
+            if(invoiceEntity.getEmail().equals(null)){
+                throw new NoEmailException();
+            }
+            else{
+                invoiceEntity.setDuedate(invoiceEntity.getDuedate());
+            }
+
+            if(invoiceEntity.getEmail().equals(null)){
+                throw new NoEmailException();
+            }
+            else{
+                invoiceEntity.setId(invoiceSequence+1);
+            }
+
+
+            // Inserting the Merhcant information
             if (invoiceEntity != null) {
                 invoiceRepository.save(invoiceEntity);
             }
 
+            // Handiling Error if trnasaction infomation is not passed on
             if (invoicePOJO.getInvoicetransactionEntityList() == null){
                 throw new NoTransactionException();
             }
 
+            // Inserting the transaction information
             for (InvoicetransactionEntity invoicetransactionEntity1 : invoicePOJO.getInvoicetransactionEntityList()) {
 
                 invoicetransactionEntity.setAmount(invoicetransactionEntity1.getAmount());
@@ -76,9 +109,6 @@ public class InvoiceGeneratorServiceImpl implements InvoiceGeneratorService{
                     invoicetransactionRepository.save(invoicetransactionEntity);
                 }
             }
-
-
-
 
             return invoicePOJO;
         } finally {
